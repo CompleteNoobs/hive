@@ -132,7 +132,7 @@ def test_exit_sync_mode_at_given_block() -> None:
         assert warning in stderr
 
 
-def test_stop_live_mode_at_given_block() -> None:
+def test_stop_live_mode_at_given_block_xxx() -> None:
     network = tt.Network()
     init_node = tt.InitNode(network=network)
     api_node = tt.ApiNode(network=network)
