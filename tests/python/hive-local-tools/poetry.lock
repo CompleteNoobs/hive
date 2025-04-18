@@ -185,13 +185,13 @@ tests-no-zope = ["cloudpickle ; platform_python_implementation == \"CPython\"", 
 
 [[package]]
 name = "beekeepy"
-version = "0.0.1.dev373+01bcfa6"
+version = "0.0.1.dev374+6116038"
 description = "All in one package for beekeeper interaction via Python interface."
 optional = false
 python-versions = ">=3.12,<4.0"
 groups = ["main"]
 files = [
-    {file = "beekeepy-0.0.1.dev373+01bcfa6-py3-none-any.whl", hash = "sha256:b382154db3eceaea5d9d03beb0350801da1857e71fb499ef9ac2d90e76680840"},
+    {file = "beekeepy-0.0.1.dev374+6116038-py3-none-any.whl", hash = "sha256:591d3d45c19036c56c59d82dbc39db9ea70ca8284369441a6f1697fbb74cefb5"},
 ]
 
 [package.dependencies]
@@ -1224,6 +1224,25 @@ pluggy = ">=0.12,<2.0"
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
 
 [[package]]
+name = "pytest-asyncio"
+version = "0.23.8"
+description = "Pytest support for asyncio"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "pytest_asyncio-0.23.8-py3-none-any.whl", hash = "sha256:50265d892689a5faefb84df80819d1ecef566eb3549cf915dfb33569359d1ce2"},
+    {file = "pytest_asyncio-0.23.8.tar.gz", hash = "sha256:759b10b33a6dc61cce40a8bd5205e302978bbbcc00e279a8b61d9a6a3c82e4d3"},
+]
+
+[package.dependencies]
+pytest = ">=7.0.0,<9"
+
+[package.extras]
+docs = ["sphinx (>=5.3)", "sphinx-rtd-theme (>=1.0)"]
+testing = ["coverage (>=6.2)", "hypothesis (>=5.7.1)"]
+
+[[package]]
 name = "pytest-repeat"
 version = "0.9.1"
 description = "pytest plugin for repeating tests"
@@ -1809,7 +1828,7 @@ develop = true
 abstractcp = "0.9.9"
 loguru = "0.7.2"
 python-dateutil = "2.8.2"
-wax = "0.3.10.dev652+a7539e5"
+wax = "0.3.10.dev653+6a5c1d2"
 
 [package.source]
 type = "directory"
@@ -1941,17 +1960,17 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 
 [[package]]
 name = "wax"
-version = "0.3.10.dev652+a7539e5"
+version = "0.3.10.dev653+6a5c1d2"
 description = ""
 optional = false
 python-versions = ">=3.12,<4.0"
 groups = ["main"]
 files = [
-    {file = "wax-0.3.10.dev652+a7539e5-cp312-cp312-manylinux_2_39_x86_64.whl", hash = "sha256:5c82706cfe6ff1244ba86a904b0e8a488469fff2f33b4c1e414fccf5b669004e"},
+    {file = "wax-0.3.10.dev653+6a5c1d2-cp312-cp312-manylinux_2_39_x86_64.whl", hash = "sha256:d9c527d8a53b8a8690e7a34f5dd4f438c89f53dd6922ad4d1f5ac9c200c49ba2"},
 ]
 
 [package.dependencies]
-beekeepy = "0.0.1.dev373+01bcfa6"
+beekeepy = "0.0.1.dev374+6116038"
 protobuf = "4.24.4"
 
 [package.source]
@@ -2087,4 +2106,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "8f01ed0ad5f8c4d10ddef5fc1e233f316bdf42af97a899df69bf7495ceea90f2"
+content-hash = "8f3029289e31f7765a9d5c2d545d5904fb7dbea6af5f2858767e563c2ba2d2ca"
