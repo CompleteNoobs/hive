@@ -185,13 +185,13 @@ tests-no-zope = ["cloudpickle ; platform_python_implementation == \"CPython\"", 
 
 [[package]]
 name = "beekeepy"
-version = "0.0.1.dev374+6116038"
+version = "0.0.1.dev375+28ac56d"
 description = "All in one package for beekeeper interaction via Python interface."
 optional = false
 python-versions = ">=3.12,<4.0"
 groups = ["main"]
 files = [
-    {file = "beekeepy-0.0.1.dev374+6116038-py3-none-any.whl", hash = "sha256:591d3d45c19036c56c59d82dbc39db9ea70ca8284369441a6f1697fbb74cefb5"},
+    {file = "beekeepy-0.0.1.dev375+28ac56d-py3-none-any.whl", hash = "sha256:f68744ee6e9f4ab9f04c590df370d6256672831e4175b9c9734f0066ef3fe642"},
 ]
 
 [package.dependencies]
@@ -1828,7 +1828,7 @@ develop = true
 abstractcp = "0.9.9"
 loguru = "0.7.2"
 python-dateutil = "2.8.2"
-wax = "0.3.10.dev653+6a5c1d2"
+wax = "0.3.10.dev654+63caf0c"
 
 [package.source]
 type = "directory"
@@ -1960,17 +1960,17 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 
 [[package]]
 name = "wax"
-version = "0.3.10.dev653+6a5c1d2"
+version = "0.3.10.dev654+63caf0c"
 description = ""
 optional = false
 python-versions = ">=3.12,<4.0"
 groups = ["main"]
 files = [
-    {file = "wax-0.3.10.dev653+6a5c1d2-cp312-cp312-manylinux_2_39_x86_64.whl", hash = "sha256:d9c527d8a53b8a8690e7a34f5dd4f438c89f53dd6922ad4d1f5ac9c200c49ba2"},
+    {file = "wax-0.3.10.dev654+63caf0c-cp312-cp312-manylinux_2_39_x86_64.whl", hash = "sha256:69ca722ec89c94bb2040acdaaa9759ae7ee85b24e3e33b138f4c2006d5523769"},
 ]
 
 [package.dependencies]
-beekeepy = "0.0.1.dev374+6116038"
+beekeepy = "0.0.1.dev375+28ac56d"
 protobuf = "4.24.4"
 
 [package.source]
