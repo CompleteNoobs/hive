@@ -105,7 +105,7 @@ def test_snapshots_has_more_plugins(block_log: Path, block_log_length: int) -> N
     assert warning_msg in (node.directory / "stderr.log").read_text()
 
 
-def test_snapshots_has_less_plugins_xxx(block_log: Path, block_log_length: int) -> None:
+def test_snapshots_has_less_plugins(block_log: Path, block_log_length: int) -> None:
     def clear_state(node: tt.InitNode):
         from os.path import join as join_paths
         from shutil import rmtree
