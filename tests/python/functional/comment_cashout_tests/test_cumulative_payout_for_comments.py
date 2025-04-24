@@ -8,8 +8,7 @@ from .block_log.generate_block_log import AMOUNT_OF_ALL_COMMENTS
 from beekeepy.interfaces import Stopwatch
 import shared_tools.networks_architecture as networks
 
-# @pytest.mark.parametrize("network_type", ["bastion", "complete_graph"])
-@pytest.mark.parametrize("network_type", ["complete_graph"])
+@pytest.mark.parametrize("network_type", ["bastion", "complete_graph"])
 def test_cumulative_payout_for_comments(prepare_environment: networks.NetworksBuilder, network_type: str) -> None:
     with Stopwatch() as sw:
         networks_builder = prepare_environment
