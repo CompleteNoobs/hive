@@ -715,7 +715,7 @@ datagen_api_tests:
   stage: test
   extends: .datagen_api_tests_common
   variables:
-    PYTEST_ARGS: "not flaky"
+    PYTEST_ARGS: "-m 'not flaky'"
   tags:
     - public-runner-docker
 
@@ -723,7 +723,7 @@ datagen_api_flaky_tests:
   stage: test
   extends: .datagen_api_tests_common
   variables:
-    PYTEST_ARGS: "flaky"
+    PYTEST_ARGS: "-m flaky"
   tags:
     - public-runner-docker
 
