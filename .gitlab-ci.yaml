@@ -698,7 +698,7 @@ message_format_testnet_tests:
   tags:
     - public-runner-docker
 
-datagen_api_tests:
+.datagen_api_tests_common:
   stage: test
   extends: .test_tools_based
 
@@ -710,6 +710,20 @@ datagen_api_tests:
   script:
     - cd tests/python/functional/datagen_tests/
     - !reference [.run-pytest, script]
+
+datagen_api_tests:
+  stage: test
+  extends: .datagen_api_tests_common
+  variables:
+    TEST_SUITE: "not flaky"
+  tags:
+    - public-runner-docker
+
+datagen_api_flaky_tests:
+  stage: test
+  extends: .datagen_api_tests_common
+  variables:
+    TEST_SUITE: "flaky"
   tags:
     - public-runner-docker
 
