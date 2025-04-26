@@ -26,7 +26,7 @@ source = [
 python = "^3.12"
 
 pytest = "8.3.5"
-pytest-asyncio = "0.26.0"
+pytest-asyncio = "0.23.8"
 pytest-repeat = "0.9.4"
 pytest-rerunfailures = "15.0"
 pytest-timeout = "2.3.1"
