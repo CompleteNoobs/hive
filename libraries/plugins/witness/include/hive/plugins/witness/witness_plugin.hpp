@@ -30,7 +30,8 @@ enum class block_production_condition
   low_participation = 5,
   lag = 6,
   wait_for_genesis = 7,
-  exception_producing_block = 8
+  exception_producing_block = 8,
+  production_is_finished = 9
 };
 
 struct produce_block_data_t

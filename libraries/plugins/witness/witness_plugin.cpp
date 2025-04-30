@@ -495,12 +495,18 @@ class witness_plugin_impl
         break;
       case block_production_condition::wait_for_genesis:
         break;
+      case block_production_condition::production_is_finished:
+        ilog( "Not producing block because production is finished" );
+        break;
     }
 
     if( theApp.is_interrupt_request() )
       ilog( "ending block_production_loop" );
     else
-      schedule_production_loop();
+    {
+      if( result != block_production_condition::production_is_finished )
+        schedule_production_loop();
+    }
     return result;
   }
 
@@ -549,7 +555,10 @@ class witness_plugin_impl
 
     const auto generate_block_ctrl = std::make_shared< witness_generate_block_flow_control >( data.next_slot_time,
       data.scheduled_witness, data.scheduled_private_key, _production_skip_flags, theApp );
-    _chain_plugin.push_generate_block_request( generate_block_ctrl );
+
+    if( !_chain_plugin.push_generate_block_request( generate_block_ctrl ) )
+      return block_production_condition::production_is_finished;
+
     const std::shared_ptr<full_block_type>& full_block = generate_block_ctrl->get_full_block();
     capture("n", full_block->get_block_num())("t", full_block->get_block_header().timestamp)("c", now);
 

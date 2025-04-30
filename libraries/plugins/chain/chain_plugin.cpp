@@ -2053,8 +2053,12 @@ bool chain_plugin::push_block( const block_flow_control& block_ctrl, uint32_t sk
   return my->push_block( block_ctrl, skip );
 }
 
-void chain_plugin::push_generate_block_request( const std::shared_ptr< generate_block_flow_control >& generate_block_ctrl )
+bool chain_plugin::push_generate_block_request( const std::shared_ptr< generate_block_flow_control >& generate_block_ctrl )
 {
+  //Working thread doesn't exist anymore therefore pushing a new block into the queue doesn't make any sense.
+  if( is_finished_write_processing() )
+    return false;
+
   write_context cxt;
   cxt.req_ptr = generate_block_ctrl;
 
@@ -2068,6 +2072,8 @@ void chain_plugin::push_generate_block_request( const std::shared_ptr< generate_
     generate_block_future.get();
 
   generate_block_ctrl->rethrow_if_exception();
+
+  return true;
 }
 
 void chain_plugin::queue_generate_block_request( const std::shared_ptr< generate_block_flow_control >& generate_block_ctrl )
