@@ -1618,6 +1618,79 @@ BOOST_AUTO_TEST_CASE(beekeeper_timeout_list_wallets)
   } FC_LOG_AND_RETHROW()
 }
 
+BOOST_AUTO_TEST_CASE(beekeeper_timeout_list_wallets_stability)
+{
+  try {
+    test_utils::beekeeper_mgr b_mgr;
+    b_mgr.remove_wallets();
+
+    const uint64_t _timeout = 90;
+    const uint32_t _session_limit = 64;
+
+    appbase::application app;
+
+    beekeeper_wallet_manager _beekeeper = b_mgr.create_wallet( app, _timeout, _session_limit );
+    BOOST_REQUIRE( _beekeeper.start() );
+
+    auto _token = _beekeeper.create_session( "salt", std::optional<std::string>() );
+
+    struct wallet
+    {
+      std::string name;
+      std::string password;
+    };
+    std::vector<wallet> _wallets{
+                              { "0" }, { "1" }, { "2" }, { "3" }, { "4" },
+                              { "5" }, { "6" }, { "7" }, { "8" }, { "9" }
+                              };
+
+    for( auto& wallet : _wallets )
+    {
+      wallet.password = _beekeeper.create( _token, wallet.name, std::optional<std::string>(), false/*is_temporary*/ );
+      _beekeeper.close( _token, wallet.name );
+    }
+    {
+      size_t _iter = 0;
+      while( _iter < 10 )
+      {
+        for( auto& wallet : _wallets )
+        {
+          _beekeeper.unlock( _token, wallet.name, wallet.password );
+        }
+
+        _beekeeper.set_timeout( _token, 1 );
+
+        size_t _cnt_locked;
+        size_t _cnt_unlocked;
+
+        do
+        {
+          _cnt_locked = 0;
+          _cnt_unlocked = 0;
+
+          auto _list_wallets = _beekeeper.list_wallets( _token );
+          for( auto& wallet : _list_wallets )
+          {
+            if( wallet.unlocked )
+              ++_cnt_unlocked;
+            else
+              ++_cnt_locked;
+          }
+
+          BOOST_TEST_MESSAGE("unlocked: " + std::to_string( _cnt_unlocked ) + " locked: " + std::to_string( _cnt_locked ) );
+
+          BOOST_REQUIRE( _cnt_unlocked  == 0  || _cnt_unlocked  == _wallets.size() );
+          BOOST_REQUIRE( _cnt_locked    == 0  || _cnt_locked    == _wallets.size() );
+
+        } while( _cnt_locked < _wallets.size() );
+
+        BOOST_TEST_MESSAGE("====================iteration " + std::to_string( _iter ) + " finished====================" );
+        ++_iter;
+      }
+    }
+  } FC_LOG_AND_RETHROW()
+}
+
 BOOST_AUTO_TEST_CASE(data_reliability_when_file_with_wallet_is_removed)
 {
   try
